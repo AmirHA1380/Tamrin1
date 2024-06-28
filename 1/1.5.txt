@@ -1,0 +1,5 @@
+from drawdata import ScatterWidget
+widget = ScatterWidget()
+widget
+
+widget.data_as_pandas

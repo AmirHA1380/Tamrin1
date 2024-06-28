@@ -1,0 +1,22 @@
+import matplotlib.pyplot as plt
+from sklearn.datasets import make_classification
+import numpy as np
+
+# تولید دیتاست با پارامترهای تعیین شده
+data_features, data_labels = make_classification(n_samples=1000, n_classes=2, n_features=2, n_informative=1, n_redundant=0,
+                                                 n_clusters_per_class=1, class_sep=2, random_state=12)
+
+# تعیین رنگ‌ها برای نمایش دو کلاس
+class_colors = np.array(['red', 'green'])
+
+# ایجاد نمودار پراکندگی برای ویژگی‌ها
+plt.scatter(data_features[:, 0], data_features[:, 1], c=class_colors[data_labels], edgecolors='k')
+
+# تنظیمات نمودار
+plt.title('Scatter Plot of Generated Data')
+plt.xlabel('Feature 1')
+plt.ylabel('Feature 2')
+plt.grid(True)
+
+# نمایش نمودار
+plt.show()

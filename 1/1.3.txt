@@ -1,0 +1,36 @@
+from sklearn.datasets import make_classification
+from sklearn.datasets import load_breast_cancer
+from sklearn.linear_model import LogisticRegression
+from sklearn.linear_model import SGDClassifier
+from sklearn.model_selection import train_test_split
+import numpy as np
+import matplotlib.pyplot as plt
+
+X, y = make_classification(n_samples=1000, n_classes=2, n_features=2, n_informative=1, n_redundant=0,
+                                            n_clusters_per_class=1, n_repeated=0, class_sep=2 ,random_state=12)
+colors = np.array(['blue', 'red'])
+plt.scatter(X[:, 0], X[:, 1], c=colors[y])
+
+plt.show()
+
+
+x_train, x_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+x_train.shape, y_train.shape, x_test.shape, y_test.shape
+
+model = LogisticRegression(solver='sag', max_iter=200, random_state=14)
+model.fit(x_train, y_train)
+model.predict(x_test), y_test
+
+model.predict_proba(x_test)
+model.predict_log_proba(x_test)
+
+model.score(x_train, y_train)
+
+model.score(x_test, y_test)
+
+model = SGDClassifier(loss='log_loss', random_state=27)
+model.fit(x_train, y_train)
+
+model.score(x_train, y_train)
+
+model.score(x_test, y_test)

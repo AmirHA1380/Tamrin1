@@ -1,0 +1,20 @@
+x1_min = X.min(0)
+x2_min = X.min(0)
+x1_max = X.max(0)
+x2_max = X.max(0)
+
+n = 50
+
+x1r = np.linspace(x1_min, x1_max, n)
+x2r = np.linspace(x2_min, x2_max, n)
+x1m, x2m = np.meshgrid(x1r, x2r)
+
+Xm = np.stack((x1m.flatten(), x2m.flatten()), axis=1)
+
+ym = model.decision_function(Xm)
+
+colors = np.array(['blue', 'red'])
+
+plt.scatter(X[:, 0], X[:, 1], c=colors[y])
+plt.contour(x1m, x2m, ym.reshape(x1m.shape), levels=[-1,0,1])
+plt.show()
